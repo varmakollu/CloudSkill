@@ -4,6 +4,8 @@
 
 The GoogleCloudReady Facilitator program will provide you an opportunity to kickstart your career in cloud and get hands on practice on Google Cloud - the tool that powers apps like Google Search, Gmail and YouTube.
 
+<img src="https://github.com/bloody-sec/TutorialBoy/blob/38e30168f7ee252ad8655749cd15bf656cdda377/images/maxresdefault.jpg">
+
 Along the way, you will learn & practice concepts like computing, application development, big data & machine learning using cloud & if you get stuck, you will have your "Facilitators" who are specially trained on Google Cloud to help. 😎
 
 
@@ -14,7 +16,8 @@ There are a lot of things in store for you. We want to make sure that by the end
 
 2. And on top of these amazing badges, get a chance to win some really cool Gooogle Cloud goodies*. 💪 (See Prize Rules section)
 
-
+      <img src="https://github.com/bloody-sec/TutorialBoy/blob/5f7603c9377f140dc2374449c1704e36436212e9/images/maxresdefaut.jpg">
+     
 # Program's Syllabus
 
 The program will introduce you to Computing, Application Development, Big Data & Machine Learning using Google Cloud's training platform called Qwiklabs where you will learn each of these topic using self-paced labs that provides you temporary credentials to Google Cloud Platform, so you can learn the cloud using the real thing – no simulations.
@@ -22,6 +25,7 @@ The program will introduce you to Computing, Application Development, Big Data &
 For convinience, we have divided the topics above into 3 different tracks - starting from the most basic.
 
 Difference between a quest & a skill badge
+<img src="https://github.com/bloody-sec/TutorialBoy/blob/38e30168f7ee252ad8655749cd15bf656cdda377/images/diff_quests_skillbadges.png">
 
 # Track 1: Cloud Infrastructure Track 
 
