@@ -1,8 +1,9 @@
 Overview
 # Task 1 : Create a Compute Engine instance, add necessary firewall rules
 
-Goto Compute Engine -> VM Instannces -> Create Instance.
+### Goto Compute Engine -> VM Instannces -> Create Instance.
 
+```
    Name : apache
    Zone : us-central1-a
    Series : N1
@@ -10,20 +11,22 @@ Goto Compute Engine -> VM Instannces -> Create Instance.
 
    Tick : Allow HTTP Traffic
           Allow HTTPS Traffic
-  
+```  
 
-Click Create.
+### Click Create.
 
 # Task 2 : Configure Apache2 Web Server in your instance
 
-SSH to 'apache' instance and run
+#### SSH to 'apache' instance and run
+
+```
 sudo su -
 apt-get update
 apt-get install apache2 -y
 service --status-all
 BASH
-Task 3 : Test your server
+```
+# Task 3 : Test your server
 
 Click on External IP of apache instance.
 
-Congratulations, you're all done with the lab 😄
