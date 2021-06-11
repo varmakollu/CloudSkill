@@ -1,4 +1,4 @@
-Overview
+
 # Task 1 : Create a Compute Engine instance, add necessary firewall rules
 
 ### Goto Compute Engine -> VM Instannces -> Create Instance.
