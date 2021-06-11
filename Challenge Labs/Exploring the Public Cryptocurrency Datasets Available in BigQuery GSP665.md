@@ -1,6 +1,5 @@
 # Exploring the Public Cryptocurrency Datasets Available in BigQuery GSP665
 
-GSP665 : Exploring the Public Cryptocurrency Datasets Available in BigQuery :-
 
 
 ## Task - 5.1 : Store the transaction hash of the large mystery transfer of 194993 BTC in the table 51 inside the lab dataset :-
