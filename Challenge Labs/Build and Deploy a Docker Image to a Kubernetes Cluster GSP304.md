@@ -8,7 +8,7 @@ gsutil cp gs://sureskills-ql/challenge-labs/ch04-kubernetes-app-deployment/echo-
 
 OR
 
-gsutil cp gs://$DEVSHELL_PROJECT_ID/echo-web.tar.gz .
+gsutil cp gs://<Replace With Your GCP Project ID>/echo-web.tar.gz .
 ```
 
 # Extract downloaded zip
@@ -16,7 +16,7 @@ gsutil cp gs://$DEVSHELL_PROJECT_ID/echo-web.tar.gz .
 ```
 tar -xvf echo-web.tar.gz
 
-gcloud builds submit --tag gcr.io/$DEVSHELL_PROJECT_ID/echo-app:v1 .
+gcloud builds submit --tag gcr.io/<Replace With Your GCP Project ID>/echo-app:v1 .
 ```
 
 # Create Kubernetes cluster
