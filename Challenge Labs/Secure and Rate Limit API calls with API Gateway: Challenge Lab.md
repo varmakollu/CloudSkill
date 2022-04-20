@@ -3,6 +3,12 @@
 
 ## Task 1. Create the Hello Service API using API Gateway :-
 
+### Deploy Backend Service
+
+```
+gcloud run deploy hello-service --image us-docker.pkg.dev/cloudrun/container/hello:latest --platform managed --region us-central1 --max-instances 3 --min-instances 1 --memory 512Mi --ingress all --allow-unauthenticated
+```
+
 ```
 export PROJECT_ID=$(gcloud config get-value project)
 export ADDRESS=$(gcloud run services list --platform managed --format json | jq -r .[].status.address.url)
