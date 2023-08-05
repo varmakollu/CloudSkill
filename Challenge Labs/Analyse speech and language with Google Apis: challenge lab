@@ -1,5 +1,4 @@
 
-```
 cat > nl_request.json <<EOF
 {
   "document":{
@@ -94,5 +93,3 @@ tar -xvf sentiment-samples.tar
 
 python3 sentiment_analysis.py reviews/bladerunner-pos.txt
 
-
-```
