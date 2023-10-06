@@ -1,77 +1,78 @@
-# Perform Foundational Data ML and AI Tasks in Google Cloud  Challenge Lab GSP323
+Perform Foundational Data, ML, and AI Tasks in Google Cloud: Challenge Lab
 
 
-## Task - 1 : Run a simple Dataflow job
+Task - 1 : Run a simple Dataflow job
 
-```
-bq mk lab
+bq mk DATASET_NAME
 
-gsutil cp gs://cloud-training/gsp323/lab.csv .
+gsutil mb gs://BUCKET_NAME
 
-cat lab.csv
 
+gsutil cp gs://cloud-training/gsp323/lab.csv  .
+  
 gsutil cp gs://cloud-training/gsp323/lab.schema .
-
+ 
 cat lab.schema
-```
 
-## Task - 2 : Run a simple Dataproc job
 
+Task - 2 : Run a simple Dataproc job
 This has to be done mannually.
 
-## Task - 3 : Run a simple Dataprep job
 
-This has to be done mannually.
 
-## Task - 4 : AI
+TASK 3 & TASK 4:-
 
-```
-gcloud iam service-accounts create my-natlang-sa \
+
+Create an API key and export as API_KEY variable
+
+
+export API_KEY={Replace with API KEY}
+
+export TASK_3_BUCKET_NAME=
+
+export TASK_4_BUCKET_NAME=
+
+
+gcloud iam service-accounts create quicklab \
   --display-name "my natural language service account"
 
 gcloud iam service-accounts keys create ~/key.json \
-  --iam-account my-natlang-sa@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com
+  --iam-account quicklab@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com
 
 export GOOGLE_APPLICATION_CREDENTIALS="/home/$USER/key.json"
 
-gcloud auth activate-service-account my-natlang-sa@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+gcloud auth activate-service-account quicklab@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com --key-file=$GOOGLE_APPLICATION_CREDENTIALS
 
 gcloud ml language analyze-entities --content="Old Norse texts portray Odin as one-eyed and long-bearded, frequently wielding a spear named Gungnir and wearing a cloak and a broad hat." > result.json
 
-gcloud auth login
-(Copy the token from the link provided)
 
 
-gsutil cp result.json gs://YOUR_PROJECT-marking/task4-cnl.result
-```
+gcloud auth login --no-launch-browser
 
-### Create an API key and export as API_KEY variable.
 
-```
-export API_KEY={Replace with API KEY}
-nano request.json
-```
+# TASK 4 BUCKET_NAME
 
-### Add this content:
+gsutil cp result.json $TASK_4_BUCKET_NAME
 
-```
+
+cat > request.json <<EOF 
 {
   "config": {
       "encoding":"FLAC",
       "languageCode": "en-US"
   },
   "audio": {
-      "uri":"gs://cloud-training/gsp323/task4.flac"
+      "uri":"gs://cloud-training/gsp323/task3.flac"
   }
 }
-```
+EOF
 
-```
+
 curl -s -X POST -H "Content-Type: application/json" --data-binary @request.json \
 "https://speech.googleapis.com/v1/speech:recognize?key=${API_KEY}" > result.json
 
-gsutil cp result.json gs://YOUR_PROJECT-marking/task4-gcs.result
 
+gsutil cp result.json $TASK_3_BUCKET_NAME
 
 gcloud iam service-accounts create quickstart
 
@@ -82,24 +83,17 @@ gcloud auth activate-service-account --key-file key.json
 export ACCESS_TOKEN=$(gcloud auth print-access-token)
 
 
-nano request.json
-```
-
-
-### Add this content:
-
-```
+cat > request.json <<EOF 
 {
-   "inputUri":"gs://spls/gsp154/video/chicago.mp4",
+   "inputUri":"gs://spls/gsp154/video/train.mp4",
    "features": [
        "TEXT_DETECTION"
    ]
 }
-```
+EOF
 
-### Now add the following commands on the command line:
 
-```
+
 curl -s -H 'Content-Type: application/json' \
     -H "Authorization: Bearer $ACCESS_TOKEN" \
     'https://videointelligence.googleapis.com/v1/videos:annotate' \
@@ -110,5 +104,9 @@ curl -s -H 'Content-Type: application/json' \
 curl -s -H 'Content-Type: application/json' -H "Authorization: Bearer $ACCESS_TOKEN" 'https://videointelligence.googleapis.com/v1/operations/OPERATION_FROM_PREVIOUS_REQUEST' > result1.json
 
 
-gsutil cp result1.json gs://YOUR_PROJECT-marking/task4-gvi.result
-```
+
+
+
+
+
+
