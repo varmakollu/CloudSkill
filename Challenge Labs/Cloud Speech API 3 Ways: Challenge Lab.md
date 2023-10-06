@@ -1,5 +1,5 @@
 
-
+```
 
 export API_KEY=""
 
@@ -133,6 +133,8 @@ response=$(curl -s -X POST \
   "https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${source_lang}&target=${target_lang}")
 
 # Check if the response contains an error
+
+```
 if [[ $response == *"error"* ]]; then
   echo "Translation API returned an error:"
   echo "$response"
@@ -147,20 +149,22 @@ else
   fi
 fi
 
-
+```
 
 # URL-decode the sentence
 decoded_sentence=$(python -c "import urllib.parse; print(urllib.parse.unquote('$task_5_sentence'))")
 
 # Make the Language Detection API request using curl
+
+
+```
 curl -s -X POST \
   -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
   -H "Content-Type: application/json; charset=utf-8" \
   -d "{\"q\": [\"$decoded_sentence\"]}" \
   "https://translation.googleapis.com/language/translate/v2/detect?key=${API_KEY}" \
   -o "$task_5_file"
-
-
+```
 
 
 
