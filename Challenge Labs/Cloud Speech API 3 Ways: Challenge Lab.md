@@ -16,14 +16,16 @@ task_4_file=""
 task_5_sentence=""
 
 task_5_file=""
+```
 
-
-
+```
 export PROJECT_ID=$(gcloud config get-value project)
+```
 
+```
 source venv/bin/activate
-
-
+```
+```
 cat > synthesize-text.json <<EOF
 
 {
@@ -46,14 +48,16 @@ cat > synthesize-text.json <<EOF
 
 EOF
 
+```
 
+```
 curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
   -H "Content-Type: application/json; charset=utf-8" \
   -d @synthesize-text.json "https://texttospeech.googleapis.com/v1/text:synthesize" \
   > $task_2_file_name
+```
 
-
-
+```
 cat > tts_decode.py <<EOF
 import argparse
 from base64 import decodebytes
@@ -86,9 +90,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     decode_tts_output(args.input, args.output)
 EOF
+```
 
+```
 python tts_decode.py --input "$task_2_file_name" --output "synthesize-text-audio.mp3"
-
+```
 
 
 # Define variables
@@ -96,6 +102,7 @@ python tts_decode.py --input "$task_2_file_name" --output "synthesize-text-audio
 audio_uri="gs://cloud-samples-data/speech/corbeau_renard.flac"
 
 # Generate speech_request.json file
+```
 cat > "$task_3_request_file" <<EOF
 {
   "config": {
@@ -108,8 +115,10 @@ cat > "$task_3_request_file" <<EOF
   }
 }
 EOF
+```
 
 # Make API call for French transcription
+
 ```
 curl -s -X POST -H "Content-Type: application/json" \
     --data-binary @"$task_3_request_file" \
