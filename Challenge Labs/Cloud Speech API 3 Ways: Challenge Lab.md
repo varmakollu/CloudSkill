@@ -110,20 +110,24 @@ cat > "$task_3_request_file" <<EOF
 EOF
 
 # Make API call for French transcription
+```
 curl -s -X POST -H "Content-Type: application/json" \
     --data-binary @"$task_3_request_file" \
     "https://speech.googleapis.com/v1/speech:recognize?key=${API_KEY}" \
     -o "$task_3_response_file"
+```
 
-
-
+```
 sudo apt-get update
 sudo apt-get install -y jq
-
+```
 
 # Set the variables for the Translation API request
+
+```
 source_lang="ja"
 target_lang="en"
+```
 
 # Make the Translation API request using curl
 response=$(curl -s -X POST \
