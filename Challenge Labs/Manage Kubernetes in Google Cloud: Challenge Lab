@@ -1,4 +1,5 @@
 
+export REGION=
 export REPO_NAME=
 export CLUSTER_NAME=
 export NAMESPACE=
@@ -6,7 +7,7 @@ export INTERVAL=
 export SERVICE_NAME=
 
 
-gcloud config set compute/zone us-central1-a
+gcloud config set compute/zone $REGION
 
 gcloud container clusters create $CLUSTER_NAME \
 --release-channel regular \
