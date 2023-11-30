@@ -85,9 +85,9 @@ kubectl -n $NAMESPACE apply -f pod-monitoring.yaml
 gsutil cp -r gs://spls/gsp510/hello-app/ .
   
 export PROJECT_ID=$(gcloud config get-value project)
-export REGION="us-central1"
+export REGION=$REGION
 cd ~/hello-app
-gcloud container clusters get-credentials $CLUSTER_NAME --zone us-central1-a
+gcloud container clusters get-credentials $CLUSTER_NAME --zone $REGION
 kubectl -n $NAMESPACE apply -f manifests/helloweb-deployment.yaml
 
 cd manifests/
@@ -170,7 +170,7 @@ EOF
 
  
 export PROJECT_ID=$(gcloud config get-value project)
-export REGION="us-central1"
+export REGION=$REGION
 cd ~/hello-app/
 
 gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
