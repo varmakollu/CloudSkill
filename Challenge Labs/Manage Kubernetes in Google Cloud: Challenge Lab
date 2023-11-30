@@ -18,8 +18,8 @@ gcloud container clusters create $CLUSTER_NAME \
 --enable-autoscaling --no-enable-ip-alias
 
  
-gcloud container clusters update $CLUSTER_NAME --enable-managed-prometheus --zone us-central1-a
-  
+gcloud container clusters update $CLUSTER_NAME --enable-managed-prometheus --zone $REGION
+
 kubectl create ns $NAMESPACE
   
 gsutil cp gs://spls/gsp510/prometheus-app.yaml .
