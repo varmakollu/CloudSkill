@@ -21,7 +21,7 @@ Here are some of the benefits of using Google Cloud Skills Boost:
 * **It's up-to-date:** The content on Google Cloud Skills Boost is always being updated to reflect the latest Google Cloud technologies and best practices.
 * **It's recognized by employers:** Google Cloud certifications are highly respected by employers in the tech industry.
 
-If you're interested in learning more about Google Cloud, I highly recommend checking out our Youtube Channel.
+If you're interested in learning more about Google Cloud, I highly recommend checking out our [Youtube Channel](https://www.youtube.com/channel/UC2s63STrkJk2rlH2eGyZpYA).
 
 
 
