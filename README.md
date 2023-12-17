@@ -1,6 +1,6 @@
 # [TutorialBoy](https://www.youtube.com/channel/UC2s63STrkJk2rlH2eGyZpYA)
 
-# [What is CloudSkill Boost ?](https://www.cloudskillsboost.google/)
+## [What is CloudSkill Boost ?](https://www.cloudskillsboost.google/)
 
 Google Cloud Skills Boost is an online platform designed to help you develop your skills in Google Cloud technologies. It offers a variety of learning resources, including:
 
