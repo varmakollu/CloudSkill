@@ -40,7 +40,7 @@ export SERVICE_NAME=
 
 
 ```bash
-curl -LO raw.githubusercontent.com/quiccklabs/Labs_solutions/master/NEW%20Manage%20Kubernetes%20in%20Google%20Cloud%20Challenge%20Lab/quicklabgsp510.sh
+curl -LO raw.githubusercontent.com/VarmaKollu/CloudSkill/main/Challenge%20Labs/Manage%20Kubernetes%20in%20Google%20Cloud%20Challenge%20Lab%5BNEW%5D/quicklabgsp510.sh
 sudo chmod +x quicklabgsp510.sh
 ./quicklabgsp510.sh
 ```
