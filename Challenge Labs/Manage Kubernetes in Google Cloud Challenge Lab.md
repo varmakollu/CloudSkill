@@ -2,20 +2,10 @@
 # Manage Kubernetes in Google Cloud: Challenge Lab
 
 
-
-
-
-
-
-
-
-
-
-
 #### Make sure to export the zone 
 
 
-```bash
+```
 export REPO_NAME=
 
 export CLUSTER_NAME=
@@ -33,7 +23,7 @@ export SERVICE_NAME=
 
 ###
 
-```bash
+```
 gcloud config set compute/zone $ZONE
 
 gcloud container clusters create $CLUSTER_NAME \
@@ -43,14 +33,17 @@ gcloud container clusters create $CLUSTER_NAME \
 --min-nodes 2 \
 --max-nodes 6 \
 --enable-autoscaling --no-enable-ip-alias
+```
 
- 
+``` 
 gcloud container clusters update $CLUSTER_NAME --enable-managed-prometheus --zone $ZONE
   
 kubectl create ns $NAMESPACE
   
 gsutil cp gs://spls/gsp510/prometheus-app.yaml .
- 
+```
+
+```
 cat > prometheus-app.yaml <<EOF
 
 apiVersion: apps/v1
@@ -83,12 +76,15 @@ spec:
         - "--process-metrics"
         - "--go-metrics"
 EOF
+```
 
- 
+ ```
 kubectl -n $NAMESPACE apply -f prometheus-app.yaml
   
 gsutil cp gs://spls/gsp510/pod-monitoring.yaml .
- 
+ ```
+
+```
 cat > pod-monitoring.yaml <<EOF
 
 apiVersion: monitoring.googleapis.com/v1alpha1
@@ -105,8 +101,9 @@ spec:
   - port: metrics
     interval: $INTERVAL
 EOF
+```
 
-  
+```  
 kubectl -n $NAMESPACE apply -f pod-monitoring.yaml
   
 gsutil cp -r gs://spls/gsp510/hello-app/ .
@@ -114,9 +111,12 @@ gsutil cp -r gs://spls/gsp510/hello-app/ .
 export PROJECT_ID=$(gcloud config get-value project)
 export REGION="${ZONE%-*}"
 cd ~/hello-app
+```
+```
 gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE
 kubectl -n $NAMESPACE apply -f manifests/helloweb-deployment.yaml
-
+```
+```
 cd manifests/
 
 cat > helloweb-deployment.yaml <<EOF
@@ -149,12 +149,15 @@ spec:
 # [END gke_manifests_helloweb_deployment_deployment_helloweb]
 ---
 EOF
- 
+ ```
+```
 cd ..
 
 kubectl delete deployments helloweb  -n $NAMESPACE
 kubectl -n $NAMESPACE apply -f manifests/helloweb-deployment.yaml
+```
 
+```
 cat > main.go <<EOF
 package main
 
@@ -194,15 +197,19 @@ func hello(w http.ResponseWriter, r *http.Request) {
 // [END gke_hello_app]
 
 EOF
+```
 
- 
+ ```
 export PROJECT_ID=$(gcloud config get-value project)
 export REGION="${ZONE%-*}"
 cd ~/hello-app/
+```
 
+```
 gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
 docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-app:v2 .
- 
+```
+```
 docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-app:v2
   
 kubectl set image deployment/helloweb -n $NAMESPACE hello-app=$REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/hello-app:v2
@@ -218,19 +225,9 @@ kubectl -n $NAMESPACE apply -f pod-monitoring.yaml
 
 
 
-
-###
-
-###
-
-###
-###
-
-
-```bash
-Task 4. Create a logs-based metric and alerting policy
+## Task 4. Create a logs-based metric and alerting policy
  
- 
+ ```
 Create a logs-based metric
  
 1. Return to the Cloud Console, and from the Navigation menu open Logging then click Logs Explorer.
