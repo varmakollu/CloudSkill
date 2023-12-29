@@ -1,6 +1,7 @@
 
 
-gcloud config set compute/zone $ZONE
+gcloud config set compute/zone us-central1-a
+
 
 gcloud container clusters create $CLUSTER_NAME \
 --release-channel regular \
@@ -8,10 +9,10 @@ gcloud container clusters create $CLUSTER_NAME \
 --num-nodes 3 \
 --min-nodes 2 \
 --max-nodes 6 \
---enable-autoscaling --no-enable-ip-alias
+--enable-autoscaling
 
  
-gcloud container clusters update $CLUSTER_NAME --enable-managed-prometheus --zone $ZONE
+gcloud container clusters update $CLUSTER_NAME --enable-managed-prometheus --zone us-central1-a
   
 kubectl create ns $NAMESPACE
   
@@ -78,9 +79,9 @@ kubectl -n $NAMESPACE apply -f pod-monitoring.yaml
 gsutil cp -r gs://spls/gsp510/hello-app/ .
   
 export PROJECT_ID=$(gcloud config get-value project)
-export REGION="${ZONE%-*}"
+export REGION="us-central1"
 cd ~/hello-app
-gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE
+gcloud container clusters get-credentials $CLUSTER_NAME --zone us-central1-a
 kubectl -n $NAMESPACE apply -f manifests/helloweb-deployment.yaml
 
 cd manifests/
@@ -163,7 +164,7 @@ EOF
 
  
 export PROJECT_ID=$(gcloud config get-value project)
-export REGION="${ZONE%-*}"
+export REGION="us-central1"
 cd ~/hello-app/
 
 gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
