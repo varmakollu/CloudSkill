@@ -39,7 +39,7 @@ export ZONE=
 ###
 
 ```
-curl -LO https://raw.githubusercontent.com/quiccklabs/Labs_solutions/master/Cloud%20Functions%202nd%20GenQwik%20Start/task1.sh
+curl -LO https://raw.githubusercontent.com/varmakollu/CloudSkill/main/Challenge%20Labs/Cloud%20Functions%202nd%20GenQwik%20Start/task1.sh
 sudo chmod +x task1.sh
 ./task1.sh
 ```
@@ -50,7 +50,7 @@ sudo chmod +x task1.sh
 ```
 export REGION="${ZONE%-*}"
 cd min-instances/
-curl -LO https://raw.githubusercontent.com/quiccklabs/Labs_solutions/master/Cloud%20Functions%202nd%20GenQwik%20Start/task2.sh
+curl -LO https://raw.githubusercontent.com/varmakollu/CloudSkill/main/Challenge%20Labs/Cloud%20Functions%202nd%20GenQwik%20Start/task2.sh
 sudo chmod +x task2.sh
 ./task2.sh
 ```
