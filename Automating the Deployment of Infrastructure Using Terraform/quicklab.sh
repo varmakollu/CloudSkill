@@ -7,20 +7,20 @@ mkdir tfinfra
 cd tfinfra
 
 
-wget https://raw.githubusercontent.com/quiccklabs/Labs_solutions/master/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/mynetwork.tf
+wget https://raw.githubusercontent.com/varmakollu/CloudSkill/main/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/mynetwork.tf
 
-wget https://raw.githubusercontent.com/quiccklabs/Labs_solutions/master/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/provider.tf
+wget https://raw.githubusercontent.com/varmakollu/CloudSkill/main/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/provider.tf
 
-wget https://raw.githubusercontent.com/quiccklabs/Labs_solutions/master/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/terraform.tfstate
+wget https://raw.githubusercontent.com/varmakollu/CloudSkill/main/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/terraform.tfstate
 
-wget https://raw.githubusercontent.com/quiccklabs/Labs_solutions/master/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/variables.tf
+wget https://raw.githubusercontent.com/varmakollu/CloudSkill/main/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/variables.tf
 
 
 mkdir instance
 
 cd instance
 
-wget https://raw.githubusercontent.com/quiccklabs/Labs_solutions/master/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/instance/main.tf
+wget https://raw.githubusercontent.com/varmakollu/CloudSkill/main/Automating%20the%20Deployment%20of%20Infrastructure%20Using%20Terraform/instance/main.tf
 
 cd ..
 
