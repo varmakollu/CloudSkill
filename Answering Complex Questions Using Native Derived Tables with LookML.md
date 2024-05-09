@@ -1,10 +1,10 @@
 
-FILE NAME :-  brand_order_facts
+## FILE NAME :-  brand_order_facts
 
+## If necessary, uncomment the line below to include explore_source.
+## include: "training_ecommerce.model.lkml"
 
-# If necessary, uncomment the line below to include explore_source.
-# include: "training_ecommerce.model.lkml"
-
+```
 view: brand_order_facts {
   derived_table: {
     explore_source: order_items {
@@ -55,20 +55,12 @@ view: brand_order_facts {
     type: number
   }
 }
+```
+---
 
+## FILE NAME :-   training_ecommerce
 
-
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-FILE NAME :-   training_ecommerce
-
-
-
-
+```
 connection: "bigquery_public_data_looker"
 
 # include all the views
@@ -134,29 +126,35 @@ explore: events {
     relationship: many_to_one
   }
 }
+```
 
+## Place in `training_ecommerce` model
 
-# Place in `training_ecommerce` model
+```
 explore: +order_items {
   query: quicklabtask1 {
     dimensions: [brand_order_facts.brand_rank_grouped]
     measures: [total_revenue]
   }
 }
+```
 
 
+## Place in `training_ecommerce` model
 
-# Place in `training_ecommerce` model
+```
 explore: +order_items {
     query: quicklabtask2 {
       dimensions: [inventory_items.product_brand]
       measures: [total_revenue]
     }
 }
+```
 
 
+## Place in `training_ecommerce` model
 
-# Place in `training_ecommerce` model
+```
 explore: +order_items {
     query: quicklabtask3 {
       dimensions: [brand_order_facts.brand_rank_grouped, created_date, users.age, users.country]
@@ -168,7 +166,7 @@ explore: +order_items {
       ]
     }
 }
-
+```
 
 
 
