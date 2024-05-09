@@ -1,5 +1,5 @@
 
-
+```
 pwd
 
 ls
@@ -16,4 +16,4 @@ cd /home/analyst/logs
 
  head -n 10 server_logs.txt 
 
-
+```
