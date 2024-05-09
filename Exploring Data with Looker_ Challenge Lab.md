@@ -1,6 +1,6 @@
-Look 1:-
+## Look 1:-
 
-
+```
 explore: +airports {
      query: start_from_here{
       dimensions: [city, state]
@@ -8,12 +8,11 @@ explore: +airports {
       filters: [airports.facility_type: "HELIPORT^ ^ ^ ^ ^ ^ ^ "]
     } 
 }
+```
 
+## Look 2:-
 
-
-Look 2:-
-
-
+```
 explore: +airports {
     query: start_from_here{
       dimensions: [facility_type, state]
@@ -21,12 +20,12 @@ explore: +airports {
     }
   }
 
+```
 
 
+## Look 3:-
 
-Look 3:-
-
-
+```
 explore: +flights {
     query: start_from_here{
       dimensions: [aircraft_origin.city, aircraft_origin.state]
@@ -34,25 +33,7 @@ explore: +flights {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
 
 
 
