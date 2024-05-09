@@ -1,10 +1,12 @@
 
 
-
+```
 export SECOND_USER_NAME=
 
 export SECOND_PROJECT_ID=
+```
 
+```
 gcloud compute instances create lab-2
 
 gcloud config configurations activate default
@@ -29,7 +31,10 @@ gcloud projects add-iam-policy-binding $PROJECTID2 --member user:$USERID2 --role
 gcloud config configurations activate user2
 
 gcloud config set project $PROJECTID2
+```
+---
 
+```
 gcloud compute instances create lab-2
 
 gcloud config configurations activate default
@@ -59,7 +64,7 @@ gcloud projects add-iam-policy-binding $PROJECTID2 --member serviceAccount:$SA -
 gcloud projects add-iam-policy-binding $PROJECTID2 --member serviceAccount:$SA --role=roles/compute.instanceAdmin
 
 gcloud compute instances create lab-3 --machine-type=e2-small --service-account $SA --scopes "https://www.googleapis.com/auth/compute"
-
+```
 
 
 
