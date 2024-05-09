@@ -1,6 +1,6 @@
-FILE NAME :- order_items_challenge
+## FILE NAME :- order_items_challenge
 
-
+```
 view: order_items_challenge {
   sql_table_name: `cloud-training-demos.looker_ecomm.order_items’  ;;
   drill_fields: [order_item_id]
@@ -39,19 +39,12 @@ view: order_items_challenge {
   }
 
 }
+```
+---
 
+## FILE NAME :- user_details
 
-
-
-
-=========================================================================================================================================================
-
-
-
-
-FILE NAME :- user_details
-
-
+```
 # If necessary, uncomment the line below to include explore_source.
 # include: "training_ecommerce.model.lkml"
 
@@ -90,21 +83,13 @@ view: user_details {
     description: ""
   }
 }
+```
 
+---
 
+## FILE NAME :- training_ecommerce
 
-
-
-=========================================================================================================================================================
-
-
-
-
-FILE NAME :- training_ecommerce
-
-
-
-
+```
 connection: "bigquery_public_data_looker"
 
 # include all the views
@@ -126,7 +111,6 @@ explore: order_items {
 
 
   sql_always_where: ${sale_price} >= VALUE_1 ;;
-
 
   conditionally_filter: {
 
@@ -207,23 +191,14 @@ explore: events {
     relationship: many_to_one
   }
 }
+```
+
+---
 
 
+## FILE NAME :-  training_ecommerce
 
-
-
-
-==========================================================================================================================================================================
-
-
-
-FINAL TASK ::
-
-FILE NAME :-  training_ecommerce
-
-
-
-
+```
 connection: "bigquery_public_data_looker"
 
 # include all the views
@@ -304,8 +279,5 @@ explore: events {
     relationship: many_to_one
   }
 }
+```
 
-
-
-
-==========================================================================================================================================================================
