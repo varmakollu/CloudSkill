@@ -1,3 +1,4 @@
+```
 export my_zone=us-central1-a
 export my_cluster=standard-cluster-1
 
@@ -5,20 +6,19 @@ source <(kubectl completion bash)
 
 gcloud container clusters get-credentials $my_cluster --zone $my_zone
 
-
 git clone https://github.com/GoogleCloudPlatform/training-data-analyst
-
 
 ln -s ~/training-data-analyst/courses/ak8s/v1.1 ~/ak8s
 
-
 cd ~/ak8s/Autoscaling/
+```
 
+---
 
+```
 kubectl create -f web.yaml --save-config
 
 kubectl expose deployment web --target-port=8080 --type=NodePort
-
 
 kubectl autoscale deployment web --max 4 --min 1 --cpu-percent 1
 
@@ -71,12 +71,5 @@ spec:
 EOF
 
 
-
 kubectl apply -f web.yaml
-
-
-
-
-
-
-
+```
