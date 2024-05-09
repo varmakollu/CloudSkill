@@ -1,7 +1,7 @@
 
-FILE NAME :- order_items
+## FILE NAME :- order_items
 
-
+```
 view: order_items {
   sql_table_name: `cloud-training-demos.looker_ecomm.order_items`
     ;;
@@ -172,20 +172,11 @@ view: order_items {
     ]
   }
 }
+```
 
+## FILE NAME :- products
 
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-FILE NAME :- products
-
-
-
-
-
+```
 view: products {
   sql_table_name: `cloud-training-demos.looker_ecomm.products`
     ;;
@@ -263,19 +254,11 @@ view: products {
     drill_fields: [id, name, distribution_centers.name, distribution_centers.id, inventory_items.count]
   }
 }
+```
 
+## FILE NAME :- users
 
-
-
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-FILE NAME :- users
-
-
-
+```
 view: users {
   sql_table_name: `cloud-training-demos.looker_ecomm.users`
     ;;
@@ -386,21 +369,11 @@ view: users {
     filters: [ hidden_traffic_source_filter: "Yes" ]
   }
 }
+```
 
+## FILE NAME :-  training_ecommerce
 
-
-
-
-
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-FILE NAME :-  training_ecommerce
-
-
-
-
-
+```
 connection: "bigquery_public_data_looker"
 
 # include all the views
@@ -490,5 +463,4 @@ explore: +order_items {
     filters: [users.select_traffic_source: "Email"]
   }
 }
-
-
+```
