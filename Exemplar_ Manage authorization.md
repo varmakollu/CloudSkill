@@ -1,3 +1,4 @@
+```
 cd projects
 
 ls -l
@@ -15,3 +16,4 @@ ls -la
 chmod u-w,g-w,g+r .project_x.txt
 
 chmod g-x drafts
+```
