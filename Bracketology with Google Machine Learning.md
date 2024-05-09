@@ -1,7 +1,6 @@
 
-============================================================================================================================================================================
 
-
+```
 SELECT
   season,
   COUNT(*) as games_per_tournament
@@ -9,12 +8,10 @@ SELECT
  `bigquery-public-data.ncaa_basketball.mbb_historical_tournament_games`
  GROUP BY season
  ORDER BY season # default is Ascending (low to high)
+```
+---
 
-
-=============================================================================================================================================================================================
-
-
-
+```
 # create a row for the winning team
 SELECT
   # features
@@ -61,21 +58,14 @@ SELECT
   # win_pts AS opponent_points
 FROM
 `bigquery-public-data.ncaa_basketball.mbb_historical_tournament_games`
+```
+---
 
-=============================================================================================================================================================================================
+### CREATE a dataset 
 
+- DATASET ID = bracketology
 
-
-CREATE a dataset 
-
-DATASET ID = bracketology
-
-
-
-=============================================================================================================================================================================================
-
-
-
+```
 CREATE OR REPLACE MODEL
   `bracketology.ncaa_model`
 OPTIONS
@@ -107,10 +97,10 @@ FROM
 # tournament season information from 1985 - 2017
 # here we"ll train on 1985 - 2017 and predict for 2018
 WHERE season <= 2017
+```
+---
 
-=============================================================================================================================================================================================
-
-
+```
 SELECT
   category,
   weight
@@ -123,31 +113,28 @@ FROM
     WHERE
       processed_input = "seed")) # try other features like "school_ncaa"
       ORDER BY weight DESC
+```
+---
 
-
-=============================================================================================================================================================================================
-
-
+```
 SELECT
   *
 FROM
   ML.EVALUATE(MODEL   `bracketology.ncaa_model`)
+```
+---
 
-
-=============================================================================================================================================================================================
-
-
+```
 CREATE OR REPLACE TABLE `bracketology.predictions` AS (
 SELECT * FROM ML.PREDICT(MODEL `bracketology.ncaa_model`,
 # predicting for 2018 tournament games (2017 season)
 (SELECT * FROM `data-to-insights.ncaa.2018_tournament_results`)
 )
 )
+```
+---
 
-
-=============================================================================================================================================================================================
-
-
+```
 # create training dataset:
 # create a row for the winning team
 CREATE OR REPLACE TABLE `bracketology.training_new_features` AS
@@ -226,15 +213,10 @@ LEFT JOIN `data-to-insights.ncaa.feature_engineering` AS team
 ON o.school_ncaa = team.team AND o.season = team.season
 LEFT JOIN `data-to-insights.ncaa.feature_engineering` AS opp
 ON o.opponent_school_ncaa = opp.team AND o.season = opp.season
+```
+---
 
-
-
-
-=============================================================================================================================================================================================
-
-
-
-
+```
 CREATE OR REPLACE MODEL
   `bracketology.ncaa_model_updated`
 OPTIONS
@@ -270,23 +252,18 @@ SELECT
 FROM `bracketology.training_new_features`
 # here we'll train on 2014 - 2017 and predict on 2018
 WHERE season BETWEEN 2014 AND 2017 # between in SQL is inclusive of end points
+```
+---
 
-
-
-=============================================================================================================================================================================================
-
-
-
-
+```
 SELECT
   *
 FROM
   ML.EVALUATE(MODEL     `bracketology.ncaa_model_updated`)
+```
 
-
-=============================================================================================================================================================================================
-
-
+---
+```
 CREATE OR REPLACE TABLE `bracketology.ncaa_2018_predictions` AS
 SELECT
   *
@@ -299,13 +276,10 @@ FROM
       WHERE season = 2018
     )
   )
+```
+---
 
-
-
-=============================================================================================================================================================================================
-
-
-
+```
 SELECT
 CONCAT(school_ncaa, " was predicted to ",IF(predicted_label="loss","lose","win")," ",CAST(ROUND(p.prob,2)*100 AS STRING), "% but ", IF(n.label="loss","lost","won")) AS narrative,
 predicted_label, # what the model thought
@@ -328,15 +302,9 @@ WHERE
   predicted_label <> n.label # model got it wrong
   AND p.prob > .75  # by more than 75% confidence
 ORDER BY prob DESC
-
-
-
-
-
-=============================================================================================================================================================================================
-
-
-
+```
+---
+```
 SELECT
 CONCAT(opponent_school_ncaa, " (", opponent_seed, ") was ",CAST(ROUND(ROUND(p.prob,2)*100,2) AS STRING),"% predicted to upset ", school_ncaa, " (", seed, ") and did!") AS narrative,
 predicted_label, # what the model thought
@@ -361,14 +329,9 @@ WHERE
   AND predicted_label = n.label # model got it right
   AND p.prob >= .55  # by 55%+ confidence
   AND (CAST(opponent_seed AS INT64) - CAST(seed AS INT64)) > 2 #
-
-
-
-
-
-=============================================================================================================================================================================================
-
-
+```
+---
+```
 SELECT
   NULL AS label,
   team.school_ncaa AS team_school_ncaa,
@@ -379,13 +342,9 @@ FROM `data-to-insights.ncaa.2019_tournament_seeds` AS team
 CROSS JOIN `data-to-insights.ncaa.2019_tournament_seeds` AS opp
 # teams cannot play against themselves :)
 WHERE team.school_ncaa <> opp.school_ncaa
-
-
-
-
-=============================================================================================================================================================================================
-
-
+```
+---
+```
 CREATE OR REPLACE TABLE `bracketology.ncaa_2019_tournament` AS
 WITH team_seeds_all_possible_games AS (
   SELECT
@@ -443,13 +402,10 @@ SELECT
   opp.pts_100poss - team.pts_100poss AS eff_stat_diff,
   opp.efficiency_rating - team.efficiency_rating AS eff_rating_diff
 FROM add_in_2018_season_stats
+```
+---
 
-
-
-
-=============================================================================================================================================================================================
-
-
+```
 CREATE OR REPLACE TABLE `bracketology.ncaa_2019_tournament_predictions` AS
 SELECT
   *
@@ -459,34 +415,6 @@ FROM
 SELECT * FROM `bracketology.ncaa_2019_tournament`
 ))
 
-
-=============================================================================================================================================================================================
-====================================================================THANKS OF WATCHING =====================================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
 
 
