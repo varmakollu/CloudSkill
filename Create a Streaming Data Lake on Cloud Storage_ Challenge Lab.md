@@ -1,15 +1,18 @@
 
-
+```
 PROJECT_ID=$(gcloud config get-value project)
 
 export BUCKET_NAME="${PROJECT_ID}-bucket"
-
+```
+```
 export TOPIC_ID=
 
 export REGION=
 
 export MESSAGE=""
-
+```
+---
+```
 gcloud services disable dataflow.googleapis.com
 
 gcloud services enable dataflow.googleapis.com
@@ -21,11 +24,12 @@ gcloud pubsub topics create $TOPIC_ID
 gcloud app create --region=$REGION
 
 sleep 100
-
+```
+```
 gcloud scheduler jobs create pubsub quicklab --schedule="* * * * *" \
     --topic=$TOPIC_ID --message-body="$MESSAGE"
-
-
+```
+```
 gcloud scheduler jobs run quicklab
 
 git clone https://github.com/GoogleCloudPlatform/java-docs-samples.git
@@ -42,7 +46,7 @@ mvn compile exec:java \
     --output=gs://$BUCKET_NAME/samples/output \
     --runner=DataflowRunner \
     --windowSize=2"
-
+```
 
 
 
