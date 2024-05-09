@@ -1,15 +1,18 @@
-PART 0:-  Assigning Values 
+## PART 0:-  Assigning Values 
 
+```
 export ZONE=
+```
 
+```
 export PROJECTID=$(gcloud config get-value project)
 
 gcloud auth login
+```
 
+## PART 1:-  Run all this commands on lab-vm instance 
 
-PART 1:-  Run all this commands on lab-vm instance 
-
-
+```
 gcloud iam service-accounts create devops --display-name devops
 
 gcloud config configurations activate default
@@ -47,17 +50,12 @@ gcloud projects add-iam-policy-binding $PROJECTID --member=serviceAccount:$SSA -
 
 
 gcloud compute instances create bigquery-instance --service-account=$SSA --scopes=https://www.googleapis.com/auth/bigquery --zone=$ZONE
+```
+---
 
+## PART 2:- Run all command on bigquery-instance
 
-
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-PART 2:- Run all command on bigquery-instance
-
-
-
-
+```
 export PROJECT_ID=$(gcloud config get-value project)
 
 sudo apt-get update
@@ -106,7 +104,7 @@ pip3 install pandas
 pip3 install db-dtypes
 
 python3 query.py
-
+```
 
 
 
