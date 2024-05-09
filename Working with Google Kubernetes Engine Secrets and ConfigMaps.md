@@ -1,5 +1,6 @@
-TASK 1:-
+## TASK 1:-
 
+```
 export my_zone=us-central1-a
 export my_cluster=standard-cluster-1
 
@@ -27,12 +28,12 @@ ln -s ~/training-data-analyst/courses/ak8s/v1.1 ~/ak8s
 cd ~/ak8s/Secrets/
 
 kubectl apply -f pubsub.yaml
+```
+
+### Create service account credentials for lab instruction
 
 
-//Create service account credentials for lab instruction
-
-
-
+```
 ls ~/
 
 kubectl create secret generic pubsub-key \
@@ -40,12 +41,11 @@ kubectl create secret generic pubsub-key \
 
 
 kubectl apply -f pubsub-secret.yaml
+```
+--- 
+## Task 2:- 
 
-
-
-Task 2:- 
-
-
+```
 kubectl create configmap sample --from-literal=message=hello
 
 kubectl create configmap sample2 --from-file=sample2.properties
@@ -55,16 +55,5 @@ kubectl apply -f config-map-3.yaml
 kubectl apply -f pubsub-configmap.yaml
 
 kubectl apply -f pubsub-configmap2.yaml
-
-
-
-
-
-
-
-
-
-
-
-
+```
 
