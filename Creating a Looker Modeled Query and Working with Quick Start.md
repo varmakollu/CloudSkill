@@ -1,5 +1,5 @@
 
-
+```
 connection: "bigquery_public_data_looker"
 
 # include all the views
@@ -41,8 +41,11 @@ explore: order_items {
     relationship: many_to_one
   }
 }
+```
 
-# Place in `training_ecommerce` model
+## Place in `training_ecommerce` model
+
+```
 explore: +order_items {
   query: start_from_here{
       dimensions: [products.department, users.state]
@@ -69,5 +72,4 @@ explore: events {
     relationship: many_to_one
   }
 }
-
-
+```
