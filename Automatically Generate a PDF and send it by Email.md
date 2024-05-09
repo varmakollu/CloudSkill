@@ -1,6 +1,6 @@
 
 
-
+```
 sudo curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
 sudo sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list
@@ -16,11 +16,12 @@ sudo apt update
 sudo apt install python3-pip -y
 
 pip install reportlab==3.6.11
+```
 
 
+## TASK 2:-
 
-TASK 2:-
-
+```
 #!/usr/bin/env python3
 import json
 import locale
@@ -103,7 +104,7 @@ def main(argv):
 if __name__ == "__main__":
     main(sys.argv)
 
-
+```
 
 
 
