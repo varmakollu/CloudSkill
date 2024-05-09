@@ -1,41 +1,47 @@
 
 
-Task 2:- 
+## Task 2:- 
 
+```
 sudo apt update
 
 curl -LO https://github.com/eosio/eos/releases/download/v2.1.0/eosio_2.1.0-1-ubuntu-20.04_amd64.deb
 
 sudo apt install ./eosio_2.1.0-1-ubuntu-20.04_amd64.deb -y
+```
+---
 
+## Task 3:-
 
-Task 3:-
-
+```
 keosd --unlock-timeout 999999999 &
 
 cleos wallet create --file my_wallet_password
+```
 
+## Task 4:-
 
-Task 4:-
-
+```
 cleos wallet open
 
 cleos wallet unlock <my_wallet_password
 
 cleos wallet import --private-key 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
+```
 
+## Task 5:-
 
-Task 5:-
-
+```
 sudo apt install build-essential -y
 
 curl -LO https://github.com/eosio/eosio.cdt/releases/download/v1.8.1/eosio.cdt_1.8.1-1-ubuntu-18.04_amd64.deb
 
 sudo apt install ./eosio.cdt_1.8.1-1-ubuntu-18.04_amd64.deb
+```
 
+## Task 6:-
 
-Task 6:-
-
+```
 sudo apt install cmake -y
 
 git clone https://github.com/EOSIO/eosio.contracts.git \
@@ -52,10 +58,11 @@ cd eos/contracts/contracts/eosio.boot
 cmake .
 make
 cd ~
+```
 
+## Task 7:-
 
-Task 7:-
-
+```
 mkdir nodes
 
 cat >nodes/genesis.json
@@ -84,12 +91,11 @@ cat >nodes/genesis.json
   },
   "initial_chain_id": "0000000000000000000000000000000000000000000000000000000000000000"
 }
+```
+---
+#### Press ctrl + D once, It’s a mistake in video sorry for inconvenience 🙏
 
-
-
-//Press ctrl + D once, It’s a mistake in video sorry for inconvenience 🙏
-
-
+```
 mkdir nodes/00-boot
 
 nodeos \
@@ -121,11 +127,12 @@ cleos create account eosio eosio.stake EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHu
 cleos create account eosio eosio.token EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
 cleos create account eosio eosio.vpay EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
 cleos create account eosio eosio.rex EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
+```
 
 
+## Task 8:-
 
-Task 8:-
-
+```
 cleos set contract eosio.token ~/eosio.contracts/build/contracts/eosio.token/
 
 cleos set contract eosio.msig ~/eosio.contracts/build/contracts/eosio.msig/
@@ -133,16 +140,18 @@ cleos set contract eosio.msig ~/eosio.contracts/build/contracts/eosio.msig/
 cleos push action eosio.token create '["eosio", "10000000000.0000 SYS"]' -p eosio.token
 
 cleos push action eosio.token issue '["eosio", "1000000000.0000 SYS", "memo"]' -p eosio
+```
 
+## Task 9:- 
 
-Task 9:- 
-
+```
 sudo apt install jq -y
 
 curl -X POST http://127.0.0.1:8888/v1/producer/get_supported_protocol_features -d '{"exclude_disabled": false, "exclude_unactivatable": false}' | jq | more
+```
+- Press space button multiple times
 
-// Press space button multiple times
-
+```
 curl -X POST http://127.0.0.1:8888/v1/producer/schedule_protocol_feature_activations -d '{"protocol_features_to_activate": ["0ec7e080177b2c02b278d5088611686b49d739925a92d9bfcacd7fc6b74053bd"]}'
 
 
@@ -184,10 +193,11 @@ cleos push action eosio activate '["299dcb6af692324b899b39f16d5a530a33062804e41f
 
 
 cleos set contract eosio ~/eosio.contracts/build/contracts/eosio.system/
+```
 
+## Task 10:-
 
-Task 10:-
-
+```
 cleos push action eosio setpriv '["eosio.msig", 1]' -p eosio
 
 cleos push action eosio init '["0", "4,SYS"]' -p eosio
@@ -211,10 +221,11 @@ cleos system regproducer produce.four EOS5y3Tm1czTCia3o3JidVKmC78J9gRQU8qHjmRjFx
 
 
 cleos system listproducers
+```
 
+## Task 11:-
 
-Task 11:-
-
+```
 mkdir nodes/01-node nodes/02-node nodes/03-node nodes/04-node
 
 
@@ -339,7 +350,7 @@ cleos push action eosio updateauth '{"account": "eosio.rex", "permission": "owne
 cleos push action eosio updateauth '{"account": "eosio.rex", "permission": "active", "parent": "owner", "auth": {"threshold": 1, "keys": [], "waits": [], "accounts": [{"weight": 1, "permission": {"actor": "eosio", "permission": "active"}}]}}' -p eosio.rex@active
 
 
-
+```
 
 
 
