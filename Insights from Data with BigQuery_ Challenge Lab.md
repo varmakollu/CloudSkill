@@ -1,18 +1,17 @@
 
 
 
-Task 1:- make a changes in data according
+## Task 1:- make a changes in data according
 
+```
 SELECT sum(cumulative_confirmed) as total_cases_worldwide
 FROM `bigquery-public-data.covid19_open_data.covid19_open_data`
 WHERE date='2020-05-25'
+```
 
+## Task 2:- Worst affected areas
 
-===========================================================================================================================================================================
-
-Task 2:- Worst affected areas
-
-
+```
 	with deaths_by_states as (
 
 		 SELECT subregion1_name as state, sum(cumulative_deceased) as death_count
@@ -29,14 +28,11 @@ Task 2:- Worst affected areas
 	from deaths_by_states
 
 	where death_count > 300
+```
 
+## Task 3:-Identifying hotspots
 
-
-===========================================================================================================================================================================
-
-Task 3:-Identifying hotspots
-
-
+```
 SELECT * FROM (
 
     SELECT subregion1_name as state, sum(cumulative_confirmed) as total_confirmed_cases
@@ -50,29 +46,21 @@ SELECT * FROM (
     ORDER BY total_confirmed_cases DESC
 )
 WHERE total_confirmed_cases > 3000
+```
 
+## Task 4:- Fatality ratio
 
-
-===========================================================================================================================================================================
-
-Task 4:- Fatality ratio
-
-NOTE :- look carefully in may there are 31 day and april 30 so please make the changes according
-
-
+```
 SELECT sum(cumulative_confirmed) as total_confirmed_cases, sum(cumulative_deceased) as total_deaths, (sum(cumulative_deceased)/sum(cumulative_confirmed))*100 as case_fatality_ratio
 
 FROM `bigquery-public-data.covid19_open_data.covid19_open_data`
 
 where country_name="Italy" AND date BETWEEN '2020-05-01'and '2020-05-31'
+```
 
+## Task 5:- Identifying specific day
 
-
-===========================================================================================================================================================================
-
-Task 5:- Identifying specific day
-
-
+```
 SELECT date
 
 FROM `bigquery-public-data.covid19_open_data.covid19_open_data`
@@ -82,18 +70,14 @@ where country_name="Italy" and cumulative_deceased>16000
 order by date asc
 
 limit 1
+```
 
 
+## Task 6:- Finding days with zero net new cases
 
+#### NOTE:- please check the start date and end date carefully
 
-===========================================================================================================================================================================
-
-
-Task 6:- Finding days with zero net new cases
-
-NOTE:- please check the start date and end date carefully
-
-
+```
 WITH india_cases_by_date AS (
 
   SELECT
@@ -143,16 +127,11 @@ select count(*)
 from india_previous_day_comparison
 
 where net_new_cases=0
+```
 
+## Task 7:- Look carefully I didn't change date here
 
-
-
-===========================================================================================================================================================================
-
-Task 7:- Look carefully I didn't change date here
-
-
-
+```
 WITH us_cases_by_date AS (
 
   SELECT
@@ -182,7 +161,6 @@ WITH us_cases_by_date AS (
  )
 
 
-
 , us_previous_day_comparison AS
 
 (SELECT
@@ -201,21 +179,16 @@ FROM us_cases_by_date
 
 )
 
-
-
 select Date, cases as Confirmed_Cases_On_Day, previous_day as Confirmed_Cases_Previous_Day, percentage_increase as Percentage_Increase_In_Cases
 
 from us_previous_day_comparison
 
 where percentage_increase > 5
+```
 
+## Task 8:- Same here we don't need to change date here
 
-
-===========================================================================================================================================================================
-
-Task 8:- Same here we don't need to change date here
-
-
+```
 WITH cases_by_country AS (
 
   SELECT
@@ -240,8 +213,6 @@ WITH cases_by_country AS (
 
  )
 
-
-
 , recovered_rate AS
 
 (SELECT
@@ -255,7 +226,6 @@ FROM cases_by_country
 )
 
 
-
 SELECT country, cases AS confirmed_cases, recovered_cases, recovery_rate
 
 FROM recovered_rate
@@ -265,14 +235,11 @@ WHERE cases > 50000
 ORDER BY recovery_rate desc
 
 LIMIT 5 
+```
 
+## Task 9:- Here we change the date
 
-
-
-===========================================================================================================================================================================
-
-Task 9:- Here we change the date
-
+```
 WITH
   france_cases AS (
   SELECT
@@ -299,14 +266,12 @@ LIMIT 1
 )
 select first_day_cases, last_day_cases, days_diff, POWER((last_day_cases/first_day_cases),(1/days_diff))-1 as cdgr
 from summary
+```
 
 
+## Task 10:-  Create a Looker Studio report
 
-===========================================================================================================================================================================
-
-Task 10:-  Create a Looker Studio report
-
-
+```
 SELECT
 
   date, SUM(cumulative_confirmed) AS country_cases,
@@ -326,7 +291,7 @@ WHERE
   AND country_name ="United States of America"
 
 GROUP BY date
-
+```
 
 
 
