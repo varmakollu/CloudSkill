@@ -1,9 +1,12 @@
-Task 1:-
+## Task 1:-
 
+```
 bq mk austin
+```
 
-Task 2:-
+## Task 2:-
 
+```
 CREATE OR REPLACE MODEL austin.location_model
 OPTIONS
   (model_type='linear_reg', labels=['duration_minutes']) AS
@@ -23,11 +26,12 @@ ON
 WHERE
     EXTRACT(YEAR FROM start_time) = Training_Year
     AND duration_minutes > 0
+```
 
 
+## Task 3:-
 
-Task 3:-
-
+```
 CREATE OR REPLACE MODEL austin.subscriber_model
 OPTIONS
   (model_type='linear_reg', labels=['duration_minutes']) AS
@@ -38,12 +42,11 @@ SELECT
     duration_minutes
 FROM `bigquery-public-data.austin_bikeshare.bikeshare_trips` AS trips
 WHERE EXTRACT(YEAR FROM start_time) = Training_Year
+```
 
+## Task 4:-
 
-Task 4:-
-
-
-
+```
 -- Evaluation metrics for location_model
 SELECT
   SQRT(mean_squared_error) AS rmse,
@@ -64,11 +67,11 @@ FROM
     trips.start_station_name = stations.name
   WHERE EXTRACT(YEAR FROM start_time) = Evaluation_Year)
 )
+```
 
+### Evaluation metrics for subscriber_model
 
-
-
--- Evaluation metrics for subscriber_model
+```
 SELECT
   SQRT(mean_squared_error) AS rmse,
   mean_absolute_error
@@ -84,11 +87,11 @@ FROM
   WHERE
     EXTRACT(YEAR FROM start_time) = Evaluation_Year)
 )
+```
 
+## Task 5:-
 
-
-Task 5:-
-
+```
 SELECT
   start_station_name,
   COUNT(*) AS trips
@@ -115,5 +118,5 @@ WHERE
   EXTRACT(YEAR FROM start_time) = Evaluation_Year
   AND subscriber_type = 'Single Trip'
   AND start_station_name = '21st & Speedway @PCL'))
-
+```
 
