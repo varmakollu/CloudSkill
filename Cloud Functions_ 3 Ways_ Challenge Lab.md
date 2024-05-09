@@ -1,5 +1,6 @@
 
-gcloud services enable \
+```
+  gcloud services enable \
   artifactregistry.googleapis.com \
   cloudfunctions.googleapis.com \
   cloudbuild.googleapis.com \
@@ -7,15 +8,15 @@ gcloud services enable \
   run.googleapis.com \
   logging.googleapis.com \
   pubsub.googleapis.com
-
-
+```
+---
+```
 export HTTP_FUNCTION=
 export FUNCTION_NAME=
 export REGION=
-
-
-
-
+```
+---
+```
 PROJECT_NUMBER=$(gcloud projects list --filter="project_id:$DEVSHELL_PROJECT_ID" --format='value(project_number)')
 SERVICE_ACCOUNT=$(gsutil kms serviceaccount -p $PROJECT_NUMBER)
 gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
@@ -46,7 +47,9 @@ cat > package.json <<EOF
   }
 }
 EOF
-
+```
+---
+```
 gcloud functions deploy $FUNCTION_NAME \
   --gen2 \
   --runtime nodejs16 \
@@ -56,12 +59,9 @@ gcloud functions deploy $FUNCTION_NAME \
   --trigger-bucket $BUCKET \
   --trigger-location $REGION \
   --max-instances 2
-
-==================================================================================
-
-
-
-
+```
+---
+```
 cd ..
 
 mkdir ~/HTTP_FUNCTION && cd $_
@@ -85,8 +85,9 @@ cat > package.json <<EOF
   }
 }
 EOF
-
-
+```
+---
+```
 gcloud functions deploy $HTTP_FUNCTION \
   --gen2 \
   --runtime nodejs16 \
@@ -97,13 +98,5 @@ gcloud functions deploy $HTTP_FUNCTION \
   --timeout 600s \
   --max-instances 2 \
   --min-instances 1
-
-
-
-
-
-
-
-
-
+```
 
