@@ -1,6 +1,8 @@
+```
 export REGION=
+```
 
-
+```
 gcloud pubsub topics create $DEVSHELL_PROJECT_ID-topic
 
 gcloud  pubsub subscriptions create --topic $DEVSHELL_PROJECT_ID-topic $DEVSHELL_PROJECT_ID-topic-sub
@@ -10,8 +12,9 @@ gcloud run deploy pubsub-events \
   --platform=managed \
   --region=$REGION \
   --allow-unauthenticated
+```
 
-
+```
 gcloud eventarc triggers create pubsub-events-trigger \
   --location=$REGION \
   --destination-run-service=pubsub-events \
@@ -21,7 +24,7 @@ gcloud eventarc triggers create pubsub-events-trigger \
 
 gcloud pubsub topics publish $DEVSHELL_PROJECT_ID-topic \
   --message="Test message"
-
+```
 
 
 
