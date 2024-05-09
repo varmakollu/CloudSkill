@@ -1,4 +1,5 @@
 
+```
 
 cd /home/analyst/logs
 
@@ -17,3 +18,4 @@ grep -i "Human Resources" Q4_added_users.txt
 grep "Human Resources" Q4_added_users.txt
 
 grep "jhill" Q2_deleted_users.txt
+```
