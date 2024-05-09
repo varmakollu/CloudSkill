@@ -1,5 +1,5 @@
 
-
+```
 cd projects/
 
 ls -a
@@ -17,3 +17,4 @@ ls -ld /home/researcher2/projects/drafts
 
 chmod g-x /home/researcher2/projects/drafts
 
+```
