@@ -1,9 +1,6 @@
-#incremental_pdt_file_code
+## incremental_pdt_file_code
 
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+```
 # If necessary, uncomment the line below to include explore_source.
 # include: "training_ecommerce.model.lkml"
 
@@ -56,16 +53,13 @@ view: incremental_pdt {
     value_format_name: usd
   }
 }
+```
 
+---
 
+## training_ecommerce.model_file_code
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-#training_ecommerce.model_file_code
-
-
-
+```
 connection: "bigquery_public_data_looker"
 
 # include all the views
@@ -131,10 +125,11 @@ explore: events {
     relationship: many_to_one
   }
 }
+```
 
-explore: incremental_pdt {}
+## explore: incremental_pdt {}
 
-
+```
 explore: +order_items {
   label: "Order Items - Aggregate Sales"
   aggregate_table: aggregate_sales {
@@ -173,18 +168,5 @@ explore: aggregated_orders {
     }
   }
 }
-
-
-
-
-
-
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
+```
 
