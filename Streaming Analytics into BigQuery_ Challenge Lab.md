@@ -1,14 +1,18 @@
 
+```
 export BUCKET_NAME=
-
+```
+```
 export DATASET_NAME=
-
+```
+```
 export TABLE_NAME=
-
+```
+```
 export TOPIC_NAME=
+```
 
-
-
+```
 gsutil mb gs://$BUCKET_NAME
 
 bq mk $DATASET_NAME
@@ -20,4 +24,4 @@ data:string
 gcloud pubsub topics create $TOPIC_NAME
 
 gcloud pubsub subscriptions create $TOPIC_NAME-sub --topic=$TOPIC_NAME
-
+```
