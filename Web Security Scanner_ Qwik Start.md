@@ -24,5 +24,3 @@ gcloud app deploy
 
 ### Choose REGION from task '3' and press 'y' 
 
-##
-### Congratulations !!!!
