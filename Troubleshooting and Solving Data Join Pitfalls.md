@@ -1,7 +1,8 @@
 
-
-export PROJECT_ID=YOUR_PROJECT_ID
-
+```
+export PROJECT_ID=
+```
+```
 bq mk ecommerce
 
 bq query --use_legacy_sql=false \
@@ -14,9 +15,9 @@ FROM `data-to-insights.ecommerce.all_sessions_raw`
   GROUP BY productSKU
   HAVING product_count > 1
   ORDER BY product_count DESC'
+```
 
-
-
+```
 bq query --use_legacy_sql=false --project_id=$PROJECT_ID 'WITH inventory_per_sku AS (
   SELECT DISTINCT
     website.v2ProductName,
@@ -32,8 +33,9 @@ SELECT
   SUM(stockLevel) AS total_inventory
 FROM inventory_per_sku
 GROUP BY productSKU' 
-
-
+```
+---
+```
 bq query --use_legacy_sql=false --project_id=$PROJECT_ID '#standardSQL
 # the secret is in the JOIN type
 # pull ID fields from both tables
@@ -44,7 +46,6 @@ FROM `data-to-insights.ecommerce.all_sessions_raw` AS website
 LEFT JOIN `data-to-insights.ecommerce.products` AS inventory
 ON website.productSKU = inventory.SKU
 '
-
 
 bq query --use_legacy_sql=false --project_id=$PROJECT_ID '
 #standardSQL
@@ -57,7 +58,10 @@ LEFT JOIN `data-to-insights.ecommerce.products` AS inventory
 ON website.productSKU = inventory.SKU
 WHERE inventory.SKU IS NULL
 '
+```
+---
 
+```
 bq query --use_legacy_sql=false --project_id=$PROJECT_ID '
 #standardSQL
 # reverse the join
@@ -87,7 +91,9 @@ CROSS JOIN ecommerce.site_wide_promotion
 WHERE v2ProductCategory LIKE "%Clearance%"
 AND productSKU = "GGOEGOLC013299"
 '
-
+```
+---
+```
 bq query --use_legacy_sql=false --project_id=$PROJECT_ID 'SELECT discount FROM ecommerce.site_wide_promotion'
 
 bq query --use_legacy_sql=false --project_id=$PROJECT_ID '#standardSQL
@@ -111,10 +117,4 @@ CROSS JOIN ecommerce.site_wide_promotion
 WHERE v2ProductCategory LIKE "%Clearance%"
 AND productSKU = "GGOEGOLC013299"
 '
-
-
-
-
-
-
-
+```
