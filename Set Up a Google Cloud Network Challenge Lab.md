@@ -167,5 +167,3 @@ gcloud compute --project=$DEVSHELL_PROJECT_ID firewall-rules create $RULE_NAME2 
 
 gcloud compute --project=$DEVSHELL_PROJECT_ID firewall-rules create $RULE_NAME3 --direction=INGRESS --priority=65535 --network=$VPC_NAME --action=ALLOW --rules=icmp --source-ranges=0.0.0.0/0
 ```
-
-### ***```Congratulations:-)```***
