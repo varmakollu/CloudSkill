@@ -21,7 +21,7 @@ logName="projects/YOUR_PROJECT_ID/logs/apache-access"
 textPayload:"200"
 ```
 
--Enter the following in the Regular Expression field:
+- Enter the following in the Regular Expression field:
 
 ```
 execution took (\d+)
