@@ -1,4 +1,4 @@
-
+```
 /**
 * @OnlyCurrentDoc
 *
@@ -99,5 +99,5 @@ function retrieveSentiment (line) {
 }
 
 
-
+```
 
