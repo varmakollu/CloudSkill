@@ -1,9 +1,9 @@
 
 
-FILE NAME :- user_order_lifetime
+## FILE NAME :- user_order_lifetime
 
 
-
+```
 view: user_order_lifetime {
   derived_table: {
     sql: SELECT
@@ -41,18 +41,12 @@ view: user_order_lifetime {
     fields: [user_id, lifetime_orders, lifetime_sales]
   }
 }
+```
+---
 
+## FILE NAME :-  users.view
 
-
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-FILE NAME :-  users.view
-
-
-
+```
 view: users {
   sql_table_name: `cloud-training-demos.looker_ecomm.users`
     ;;
@@ -159,17 +153,14 @@ view: users {
   }
 }
 
+```
+
+---
 
 
+## FILE NAME :- training_ecommerce.model
 
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-FILE NAME :- training_ecommerce.model
-
-
+```
 connection: "bigquery_public_data_looker"
 
 # include all the views
@@ -255,8 +246,4 @@ explore: events {
   
 }
 
-
-
-
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
