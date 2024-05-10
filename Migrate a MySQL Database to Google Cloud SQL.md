@@ -2,26 +2,12 @@
 # Migrate a MySQL Database to Google Cloud SQL
 
 
-
-Click Activate Cloud Shell Activate Cloud Shell icon at the top of the Google Cloud console.
-
-## EXPORT "ZONE"
-
-
-
-## 
-
-
-
-```bash
+```
 export ZONE=
 ```
 
-## 
 
-
-
-```bash
+```
 REGION="${ZONE%-*}"
 
 gcloud sql instances create wordpress --tier=db-n1-standard-1 --activation-policy=ALWAYS --zone $ZONE
@@ -38,12 +24,8 @@ sudo apt-get update
 sudo apt-get install -y mysql-client
 ```
 
-##
 
-### 
-
-
-```bash
+```
 gcloud auth login --no-launch-browser --quiet
 
 echo 'Password1*' | mysql_config_editor set --login-path=local --host=$MYSQLIP --user=root --password
@@ -74,8 +56,3 @@ CONFIG_FILE="wp-config.php"
 sudo sed -i "s/define('DB_HOST', 'localhost')/define('DB_HOST', '$EXTERNAL_IP')/" $CONFIG_FILE
 ```
 
-##
-
-##
-
-## Congratulation!!!
