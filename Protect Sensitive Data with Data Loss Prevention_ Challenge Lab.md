@@ -1,8 +1,9 @@
 
 
-
+```
 export BUCKET_NAME=
-
+```
+```
 cat > redact-request.json <<EOF
 {
 	"item": {
@@ -28,8 +29,9 @@ cat > redact-request.json <<EOF
 	}
 }
 EOF
+```
 
-
+```
 curl -s \
   -H "Authorization: Bearer $(gcloud auth print-access-token)" \
   -H "Content-Type: application/json" \
@@ -39,7 +41,7 @@ curl -s \
 
 gsutil cp redact-response.txt gs://$BUCKET_NAME
 
-
+```
 
 
 
