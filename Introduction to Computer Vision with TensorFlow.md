@@ -1,9 +1,8 @@
-LAB NAME :- Introduction to Computer Vision with TensorFlow
-GSP Number:- 631
+ # Introduction to Computer Vision with TensorFlow
 
+### Model.py :-
 
-Model.py :-
-
+```
 # Import and configure logging
 import logging
 import google.cloud.logging as cloud_logging
@@ -53,16 +52,12 @@ model.save('my_model.h5')
 new_model_h5 = tf.keras.models.load_model('my_model.h5')
 # Summary of loaded h5 model
 new_model_h5.summary()
+```
+---
 
+### callback_model.py:-
 
-
-
-➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
-
-
-callback_model.py:-
-
-
+```
 # Import and configure logging
 import logging
 import google.cloud.logging as cloud_logging
@@ -100,16 +95,12 @@ model.compile(optimizer = tf.keras.optimizers.Adam(),
               loss = tf.keras.losses.SparseCategoricalCrossentropy(),
               metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
 model.fit(ds_train, epochs=5, callbacks=[callbacks])
+```
+---
 
+### Exercise 1:-
 
-
-
-➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
-
-
-Exercise 1:-
-
-
+```
 # Import and configure logging
 import logging
 import google.cloud.logging as cloud_logging
@@ -142,17 +133,12 @@ model.compile(optimizer = tf.keras.optimizers.Adam(),
 model.fit(ds_train, epochs=5)
 # Logs model summary
 model.summary(print_fn=up_logger.info)
+```
+---
 
+### Exercise 2:-
 
-
-
-
-➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
-
-
-Exercise 2:-
-
-
+```
 # Import and configure logging
 import logging
 import google.cloud.logging as cloud_logging
@@ -186,17 +172,12 @@ model.compile(optimizer = tf.keras.optimizers.Adam(),
 model.fit(ds_train, epochs=5)
 # Logs model summary
 model.summary(print_fn=up_logger.info)
+```
+---
 
+### Exercise 3:-
 
-
-
-➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
-
-
-Exercise 3:-
-
-
-
+```
 # Import and configure logging
 import logging
 import google.cloud.logging as cloud_logging
@@ -234,11 +215,5 @@ image_batch, labels_batch = next(iter(ds_train))
 t_image_batch, t_labels_batch = next(iter(ds_test))
 up_logger.info("training images max " + str(np.max(image_batch[0])))
 up_logger.info("test images max " + str(np.max(t_image_batch[0])))
-
-
-
-
-
-
-
+```
 
