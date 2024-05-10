@@ -1,5 +1,5 @@
 
-
+```
 cat > user_emails.csv <<EOF
 Full Name, Email Address
 Blossom Gill, blossom@abc.edu
@@ -29,8 +29,9 @@ sudo mkdir /var/www/html
 sudo chmod +x csv_to_html.py
 sudo chmod  o+w /var/www/html
 ./csv_to_html.py user_emails.csv /var/www/html/files1.html
-
-
+```
+---
+```
 cat > ticky_check.py <<EOF
 #!/usr/bin/env python3
 import re
@@ -84,8 +85,9 @@ with open("user_statistics.csv", "w") as user_file:
    user_file.write("{}, {}, {}\n".format(line[0], line[1], line[2]))
 
 EOF
-
-
+```
+---
+```
 chmod +x ticky_check.py
 
 ./ticky_check.py
@@ -97,6 +99,6 @@ chmod +x ticky_check.py
 ./csv_to_html.py error_message.csv /var/www/html/file4.html
 
 ./csv_to_html.py user_statistics.csv /var/www/html/file5.html
-
+```
 
 
