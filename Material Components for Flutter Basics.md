@@ -4,50 +4,43 @@
 ## Material Components for Flutter Basics
 
 
-Select the Clone Repository option.
+- Select the Clone Repository option.
 
-Paste the following repository name:
+- Paste the following repository name:
 
-```bash
+```
 https://github.com/material-components/material-components-flutter-codelabs.git
 ```
-Click Clone from URL.
+- Click Clone from URL.
+- Create a web build
+- Ensure you are working from the material-components-flutter-codelabs directory:
 
-
-Create a web build
-The material components starter app is designed to be run and tested as a mobile app. Use the editor to quickly create a web build which you can use for rapid testing.
-
-In the editor, open a new Terminal by clicking the Application Menu > Terminal > New Terminal. You can also press ctrl + shift + ` to open a new Terminal.
-
-Ensure you are working from the material-components-flutter-codelabs directory:
-
-```bash
+```
 cd ~/material-components-flutter-codelabs/mdc_100_series
 ```
 
-Enable web for your flutter project:
+### Enable web for your flutter project:
 
-```bash
+```
 flutter config --enable-web
 ```
-Re-create the flutter project with web now enabled:
+- Re-create the flutter project with web now enabled:
 
-```bash
+```
 flutter create .
 ```
-You'll now see a web folder appear in your mdc_100_series directory. Flutter has added the files necessary to build and test this application on the web.
+- You'll now see a web folder appear in your mdc_100_series directory. Flutter has added the files necessary to build and test this application on the web.
 
-Run the Starter app
-To run the web application start the server and then use the Live Server to view the result.
+- Run the Starter app
 
-Run the Flutter web server from the terminal:
+- Run the Flutter web server from the terminal:
 ```
 fwr
 ```
 
 #### ***Login.Dart***
 
-```bash
+```
 // Copyright 2018-present the Flutter authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,7 +48,7 @@ fwr
 // You may obtain a copy of the License at
 //
 // http://www.apache.org/licenses/LICENSE-2.0
-//// Subscribe to quicklab...
+//// Subscribe to TutorialBoy...
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -169,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
 // You may obtain a copy of the License at
 //
 // http://www.apache.org/licenses/LICENSE-2.0
-// Subscribe to quicklab...
+// Subscribe to TutorialBoy...
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
