@@ -6,9 +6,9 @@
 export API_KEY=""
 ```
 
-```
-# Define variables for file names
 
+## Define variables for file names
+```
 task_2_request_file=""
 
 task_2_response_file=""
