@@ -1,9 +1,12 @@
 
 
-#Define APIKEY for task 1
+## Define API KEY for task 1
 
+```
 export API_KEY=""
+```
 
+```
 # Define variables for file names
 
 task_2_request_file=""
@@ -14,9 +17,10 @@ task_3_request_file=""
 
 task_3_response_file=""
 
+```
 
-
-# Generate speech_request_en.json file
+## Generate speech_request_en.json file
+```
 cat > "$task_2_request_file" <<EOF
 {
   "config": {
@@ -29,8 +33,10 @@ cat > "$task_2_request_file" <<EOF
   }
 }
 EOF
+```
 
-# Make API call for English transcription
+## Make API call for English transcription
+```
 curl -s -X POST -H "Content-Type: application/json" --data-binary @"$task_2_request_file" \
 "https://speech.googleapis.com/v1/speech:recognize?key=${API_KEY}" > "$task_2_response_file"
 
@@ -46,10 +52,12 @@ cat > "$task_3_request_file" <<EOF
   }
 }
 EOF
+```
 
-# Make API call for Spanish transcription
+## Make API call for Spanish transcription
+```
 curl -s -X POST -H "Content-Type: application/json" --data-binary @"$task_3_request_file" \
 "https://speech.googleapis.com/v1/speech:recognize?key=${API_KEY}" > "$task_3_response_file"
 
-
+```
 
