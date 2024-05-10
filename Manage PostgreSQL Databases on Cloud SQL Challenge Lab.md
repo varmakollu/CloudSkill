@@ -1,21 +1,7 @@
 ## Manage PostgreSQL Databases on Cloud SQL: Challenge Lab
 
 
-Database Migration Services require the ***Database Migration API*** and the ***Service Networking API*** to be enabled in order to function. You must enable these APIs for your project.
-
-### ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-1 :- In the Google Cloud Console, on the Navigation menu (Navigation menu icon), click Compute Engine > VM instances.
-
-2 :- In the entry for postgresql-vm, under Connect click SSH.
-
-3 :- If prompted, click Authorize.
-
-4 :- In the terminal in the new browser window, install the pglogical database extension:
-
-### ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-```bash
+```
 sudo apt install postgresql-13-pglogical
 ```
 
@@ -139,7 +125,6 @@ supersecret!
 ```
 
 
-
 #### Note change the ***TABLE_NAME*** and ***USER_NAME*** as given on table page..
 ```
 GRANT ALL PRIVILEGES ON TABLE [TABLE_NAME] TO "USER_NAME";
@@ -189,10 +174,5 @@ export INSTANCE_ID=
 ```
 gcloud sql instances clone $INSTANCE_ID  postgres-orders-pitr --point-in-time 'CHANGE_TIMESTAMP'
 ```
-
-#### 
-
-#### Congratulation !!!!
-
 
 
