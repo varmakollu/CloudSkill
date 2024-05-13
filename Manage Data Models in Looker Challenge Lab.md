@@ -493,7 +493,7 @@ view: products {
 ```
 explore: +order_items {
 
-    query: subscribe_to_quicklab {
+    query: subscribe_to_tutorialboy {
       dimensions: [created_month]
       measures: [total_profit, total_revenue]
     }
