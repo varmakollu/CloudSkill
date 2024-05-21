@@ -1,6 +1,4 @@
-## ***Manage Bigtable on Google Cloud: Challenge Lab***
-
-### 
+# Manage Bigtable on Google Cloud: Challenge Lab
 
 ***```EXPORT ZONES:-```*** 
 
@@ -14,7 +12,7 @@ export ZONE_2=
 ```
 
 ```
-curl -LO raw.githubusercontent.com/quiccklabs/Labs_solutions/master/Manage%20Bigtable%20on%20Google%20Cloud%20Challenge%20Lab/quicklabgsp380.sh
+curl -LO raw.githubusercontent.com/varmakollu/CloudSkill/main/Manage%20Bigtable%20on%20Google%20Cloud%20Challenge%20Lab/quicklabgsp380.sh
 
 sudo chmod +x quicklabgsp380.sh
 
@@ -31,6 +29,3 @@ gcloud bigtable backups delete PersonalizedProducts_7 --instance=ecommerce-recom
 gcloud bigtable instances delete ecommerce-recommendations --quiet
 ```
 
-###
-###
-### ***```Congratulations:-)```***
