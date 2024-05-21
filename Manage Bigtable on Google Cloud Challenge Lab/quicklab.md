@@ -17,6 +17,7 @@ curl -LO raw.githubusercontent.com/varmakollu/CloudSkill/main/Manage%20Bigtable%
 sudo chmod +x quicklabgsp380.sh
 
 ./quicklabgsp380.sh
+
 ```
 
 ### ***```Once you get a score on first 4 task then only run the below commands:-```*** 
