@@ -11,6 +11,6 @@ gcloud storage buckets create gs://$DEVSHELL_PROJECT_ID \
 
 
 
-gcloud compute ssh --zone "$ZONE" "instance-1" --project "$DEVSHELL_PROJECT_ID" --quiet --command 'bash -c "$(curl -fsSL https://raw.githubusercontent.com/quiccklabs/Labs_solutions/master/Rent%20a%20VM%20to%20Process%20Earthquake%20Data/quicklab.sh)"'
+gcloud compute ssh --zone "$ZONE" "instance-1" --project "$DEVSHELL_PROJECT_ID" --quiet --command 'bash -c "$(curl -fsSL https://raw.githubusercontent.com/varmakollu/CloudSkill/main/Rent%20a%20VM%20to%20Process%20Earthquake%20Data/quicklab.sh)"'
 
 
