@@ -24,7 +24,7 @@ gcloud compute instances create web-server --zone=$ZONE --project=$DEVSHELL_PROJ
     --labels=server=apache
 
 
-gcloud compute firewall-rules create allow-http \
+gcloud compute firewall-rules create allow-http-ssh \
     --allow=tcp:80 \
     --source-ranges=0.0.0.0/0 \
     --target-tags=http-server \
