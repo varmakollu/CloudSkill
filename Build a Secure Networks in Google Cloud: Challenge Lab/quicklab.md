@@ -1,4 +1,4 @@
-# Build and Secure Networks in Google Cloud: Challenge Lab
+# Build a Secure Networks in Google Cloud: Challenge Lab
 
 
 ### Tap here to open [Online Notepad](https://www.rapidtables.com/tools/notepad.html#)
