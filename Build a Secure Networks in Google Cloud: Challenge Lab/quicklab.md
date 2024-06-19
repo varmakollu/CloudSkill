@@ -17,7 +17,7 @@ export ZONE=
 ```
 
 ```
-curl -LO raw.githubusercontent.com/varmakollu/CloudSkill/main/Build%20and%20Secure%20Networks%20in%20Google%20Cloud%3A%20Challenge%20Lab/quick322.sh
+curl -LO raw.githubusercontent.com/varmakollu/CloudSkill/main/Build%20a%20Secure%20Networks%20in%20Google%20Cloud%3A%20Challenge%20Lab/quick322.sh
 sudo chmod +x quick322.sh
 ./quick322.sh
 ```
