@@ -1,24 +1,22 @@
 
 
-gcloud auth list
 
-export PROJECT_ID=$(gcloud config get-value project)
-
-export BUCKET_NAME="$PROJECT_ID"
+PROJECT_ID=$(gcloud config get-value project)
+BUCKET_NAME="$PROJECT_ID"
 
 gsutil mb -l US gs://$BUCKET_NAME
 
+
 gsutil cp gs://cloud-training/gcpnet/cdn/cdn.png gs://$BUCKET_NAME
+
 
 gsutil iam ch allUsers:objectViewer gs://$BUCKET_NAME
 
-# Get the access token
-TOKEN_ID=$(gcloud auth application-default print-access-token)
 
+TOKEN=$(gcloud auth application-default print-access-token)
 
-# Create a Backend Bucket
 curl -X POST -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN_ID" \
+  -H "Authorization: Bearer $TOKEN" \
   -d '{
     "bucketName": "'"$PROJECT_ID"'",
     "cdnPolicy": {
@@ -36,11 +34,10 @@ curl -X POST -H "Content-Type: application/json" \
   }' \
   "https://compute.googleapis.com/compute/v1/projects/$PROJECT_ID/global/backendBuckets"
 
-sleep 15
+sleep 20
 
-# Create a URL map for the CDN load balancer
 curl -X POST -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN_ID" \
+  -H "Authorization: Bearer $TOKEN" \
   -d '{
     "defaultService": "projects/'"$PROJECT_ID"'/global/backendBuckets/cdn-bucket",
     "name": "cdn-lb"
@@ -48,22 +45,21 @@ curl -X POST -H "Content-Type: application/json" \
   "https://compute.googleapis.com/compute/v1/projects/$PROJECT_ID/global/urlMaps"
 
 
-sleep 15
+sleep 20
 
-# Create a target HTTP proxy for the CDN load balancer
 curl -X POST -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN_ID" \
+  -H "Authorization: Bearer $TOKEN" \
   -d '{
     "name": "cdn-lb-target-proxy",
     "urlMap": "projects/'"$PROJECT_ID"'/global/urlMaps/cdn-lb"
   }' \
   "https://compute.googleapis.com/compute/v1/projects/$PROJECT_ID/global/targetHttpProxies"
 
-sleep 15
 
-# Create a forwarding rule for the CDN load balancer
+sleep 20
+
 curl -X POST -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $TOKEN_ID" \
+  -H "Authorization: Bearer $TOKEN" \
   -d '{
     "IPProtocol": "TCP",
     "ipVersion": "IPV4",
@@ -74,4 +70,3 @@ curl -X POST -H "Content-Type: application/json" \
     "target": "projects/'"$PROJECT_ID"'/global/targetHttpProxies/cdn-lb-target-proxy"
   }' \
   "https://compute.googleapis.com/compute/v1/projects/$PROJECT_ID/global/forwardingRules"
-
