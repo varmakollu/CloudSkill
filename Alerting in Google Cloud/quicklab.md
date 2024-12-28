@@ -8,3 +8,5 @@ chmod +x quicklab.sh
 ./quicklab.sh
 
 ```
+
+## Congratulations 🎉 for completing the Lab !
