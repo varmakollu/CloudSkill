@@ -13,4 +13,4 @@ sudo chmod +x gsp096.sh
 ### Congratulations 🎉 for completing the Lab !
 
 
-# [QUICK GCP LAB](https://www.youtube.com/@tutorailboy24)
+# [TUTORIALBOY](https://www.youtube.com/@tutorailboy24)
