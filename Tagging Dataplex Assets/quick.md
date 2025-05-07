@@ -4,11 +4,11 @@
 ## 💻 **Execute in Cloud Shell**  
 Run the following commands in **Cloud Shell**:  
 ```bash
-curl -LO raw.githubusercontent.com/ArcadeCrew/Google-Cloud-Labs/refs/heads/main/Tagging%20Dataplex%20Assets/arcadecrew.sh
+curl -LO raw.githubusercontent.com/varmakollu/CloudSkill/refs/heads/main/Tagging%20Dataplex%20Assets/gcp.sh
 
-sudo chmod +x arcadecrew.sh
+sudo chmod +x gcp.sh
 
-./arcadecrew.sh
+./gcp.sh
 ```  
 ---
 
