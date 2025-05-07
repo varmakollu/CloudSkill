@@ -35,6 +35,6 @@ sudo chmod +x gsp090.sh
     <em>This guide is provided for educational purposes. Always follow Qwiklabs terms of service and YouTube's community guidelines.</em>
   </p>
   <p style="font-size: 12px; color: #586069;">
-    <em>Last updated: April 2025</em>
+    <em>Last updated: May 2025</em>
   </p>
 </div>
