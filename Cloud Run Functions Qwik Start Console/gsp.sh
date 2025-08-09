@@ -1,117 +1,77 @@
+
+gcloud auth list
+
+gcloud config set project $DEVSHELL_PROJECT_ID
+
+gcloud services enable artifactregistry.googleapis.com cloudfunctions.googleapis.com cloudbuild.googleapis.com eventarc.googleapis.com run.googleapis.com logging.googleapis.com pubsub.googleapis.com
+
+
+sleep 45
+
+gsutil mb -l $REGION gs://$DEVSHELL_PROJECT_ID
+
+
+PROJECT_NUMBER=$(gcloud projects list --filter="project_id:$DEVSHELL_PROJECT_ID" --format='value(project_number)')
+SERVICE_ACCOUNT=$(gsutil kms serviceaccount -p $PROJECT_NUMBER)
+gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
+  --member serviceAccount:$SERVICE_ACCOUNT \
+  --role roles/pubsub.publisher
+
+gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID --member=serviceAccount:$SERVICE_ACCOUNT --role=roles/artifactregistry.reader
+
+export BUCKET="gs://$DEVSHELL_PROJECT_ID"
+
+
+mkdir cloud && cd cloud
+
+cat > index.js <<EOF_CP
+/**
+ * Responds to any HTTP request.
+ *
+ * @param {!express:Request} req HTTP request context.
+ * @param {!express:Response} res HTTP response context.
+ */
+exports.gcfunction = (req, res) => {
+    let message = req.query.message || req.body.message || 'subscribe to techcps';
+    res.status(200).send(message);
+  };
+
+EOF_CP
+
+
+cat > package.json <<EOF_CP
+{
+    "name": "sample-http",
+    "version": "3.0.0"
+  }
+  
+EOF_CP
+
+
+
 #!/bin/bash
 
-# Color codes for better readability
-BLACK_TEXT=$'\033[0;90m'
-RED_TEXT=$'\033[0;91m'
-GREEN_TEXT=$'\033[0;92m'
-YELLOW_TEXT=$'\033[0;93m'
-BLUE_TEXT=$'\033[0;94m'
-MAGENTA_TEXT=$'\033[0;95m'
-CYAN_TEXT=$'\033[0;96m'
-WHITE_TEXT=$'\033[0;97m'
-
-NO_COLOR=$'\033[0m'
-RESET_FORMAT=$'\033[0m'
-BOLD_TEXT=$'\033[1m'
-UNDERLINE_TEXT=$'\033[4m'
-
-# Displaying start message
-echo
-echo "${CYAN_TEXT}${BOLD_TEXT}╔════════════════════════════════════════════════════════╗${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}                  Starting the process...                   ${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}╚════════════════════════════════════════════════════════╝${RESET_FORMAT}"
-echo
-
-# Function for logging with timestamps
-log() {
-  echo -e "[$(date +'%Y-%m-%d %H:%M:%S')] $1"
+deploy_function() {
+gcloud functions deploy gcfunction \
+  --region=$REGION \
+  --gen2 \
+  --trigger-http \
+  --runtime=nodejs20 \
+  --allow-unauthenticated \
+  --max-instances=5 \
+  --source . --quiet
 }
 
-# Function to retry commands with exponential backoff
-retry_command() {
-  local cmd=$1
-  local description=$2
-  local retries=0
-  local wait_time=$RETRY_WAIT_INITIAL
-  local result=0
+deploy_success=false
 
-  while [ $retries -lt $MAX_RETRIES ]; do
-    log "${YELLOW_TEXT}Attempting: $description (Attempt $((retries+1))/${MAX_RETRIES})${RESET_FORMAT}"
-    
-    # Execute the command
-    eval "$cmd"
-    result=$?
-    
-    if [ $result -eq 0 ]; then
-      log "${GREEN_TEXT}Success: $description${RESET_FORMAT}"
-      return 0
-    else
-      retries=$((retries+1))
-      if [ $retries -lt $MAX_RETRIES ]; then
-        log "${YELLOW_TEXT}Failed. Retrying in $wait_time seconds...${RESET_FORMAT}"
-        sleep $wait_time
-        wait_time=$((wait_time*2)) # Exponential backoff
-      else
-        log "${RED_TEXT}Failed after $MAX_RETRIES attempts: $description${RESET_FORMAT}"
-        return 1
-      fi
-    fi
-  done
-  
-  return 1
-}
-
-# Check if gcloud is installed
-if ! command -v gcloud &>/dev/null; then
-  log "${RED_TEXT}Error: gcloud CLI is not installed. Please install it before running this script.${RESET_FORMAT}"
-
-fi
-
-# Set variables
-FUNCTION_NAME="gcfunction"
-# MAX_RETRIES=5
-# RETRY_WAIT_INITIAL=3
-TEST_DATA='{"message":"Hello World!"}'
-# Ask for region with default value
-# echo -n "${CYAN_TEXT}Enter REGION: ${RESET_FORMAT}"
-# read user_region
-# REGION=${user_region:-us-central1}
-# echo "${GREEN_TEXT}Using region: $REGION${RESET_FORMAT}"
-
-# Task 3: Test the function
-log "${BLUE_TEXT}${BOLD_TEXT}Task 3: Testing the function${RESET_FORMAT}"
-# Ask user for function URL
-echo -n "${CYAN_TEXT}Enter Function URL: ${RESET_FORMAT}"
-read user_function_url
-FUNCTION_URL=${user_function_url}
-
-if [ -z "$FUNCTION_URL" ]; then
-  log "${RED_TEXT}Failed to get function URL. Cannot test the function.${RESET_FORMAT}"
-else
-  log "Function URL: $FUNCTION_URL"
-  
-  # Test the function using curl
-  retry_command "curl -X POST $FUNCTION_URL -H 'Content-Type: application/json' -d '$TEST_DATA'" "Testing function with HTTP request"
-  
-  if [ $? -eq 0 ]; then
-    log "${GREEN_TEXT}Function test completed successfully${RESET_FORMAT}"
+while [ "$deploy_success" = false ]; do
+  if deploy_function; then
+    echo "Function deployed successfully!"
+    deploy_success=true
   else
-    log "${RED_TEXT}Function test failed after multiple attempts${RESET_FORMAT}"
+    echo "Retrying, please subscribe to techcps[https://www.youtube.com/@techcps]."
+    sleep 10
   fi
-fi
+done
 
-# Task 4: View logs
-log "${BLUE_TEXT}${BOLD_TEXT}Task 4: Retrieving function logs${RESET_FORMAT}"
-retry_command "gcloud logging read 'resource.type=cloud_function AND resource.labels.function_name=$FUNCTION_NAME' --limit=10" "Retrieving function logs"
-
-# Clean up
-log "Cleaning up temporary files..."
-rm -rf $TEMP_DIR
-
-echo
-echo "${GREEN_TEXT}${BOLD_TEXT}╔════════════════════════════════════════════════════════╗${RESET_FORMAT}"
-echo "${GREEN_TEXT}${BOLD_TEXT}              Lab Completed Successfully!               ${RESET_FORMAT}"
-echo "${GREEN_TEXT}${BOLD_TEXT}╚════════════════════════════════════════════════════════╝${RESET_FORMAT}"
-echo
-echo -e "${RED_TEXT}${BOLD_TEXT}Subscribe our Channel:${RESET_FORMAT} ${BLUE_TEXT}${BOLD_TEXT}https://www.youtube.com/@tutorialboy24${RESET_FORMAT}"
-echo
+DATA=$(printf 'subscribe to tutorialboy' | base64) && gcloud functions call gcfunction --region=$REGION --data '{"data":"'$DATA'"}'
